@@ -45,13 +45,12 @@ async def on_message(ctx):
     text = ""
     try:
         text = ia.chat(ctx.content)
-        
     except Exception as e:
         text = "Ainda não sei responder a essa pergunta, mas vou aprender com o tempo."
         print(e)
         
         
-    
+    print(f"{ctx.author}: {ctx.content}")
     await ctx.reply(text, mention_author=False)
     await bot.process_commands(ctx)
     
