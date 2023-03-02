@@ -24,6 +24,23 @@ async def rebecca(ctx):
 async def becca(ctx):
     await ctx.send(ia.chat(ctx.message.content))
     
+@bot.event
+async def on_message(ctx):
+    if ctx.author == bot.user:
+        return
+    text = ""
+    try:
+        text = ia.chat(ctx.content)
+        
+    except Exception as e:
+        text = "Ainda não sei responder a essa pergunta, mas vou aprender com o tempo."
+        print(e)
+        
+        
+    
+    await ctx.reply(text, mention_author=False)
+    await bot.process_commands(ctx)
+    
     
 
 bot.run(DISCORD_KEY)
