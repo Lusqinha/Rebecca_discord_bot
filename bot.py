@@ -46,7 +46,8 @@ async def on_message(ctx):
     try:
         text = ia.chat(ctx.content)
     except Exception as e:
-        text = "Ainda não sei responder a essa pergunta, mas vou aprender com o tempo."
+        ia.reset()
+        text = "Não entendi o que você disse, mas vou tentar aprender!"
         print(e)
         
         
