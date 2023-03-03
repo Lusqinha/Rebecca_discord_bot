@@ -19,18 +19,23 @@ async def ping(ctx):
     
 @bot.command()
 async def rebecca(ctx):
-    await ctx.reply(ia.chat(ctx.message.content))
+    await ctx.reply(ia.gpt_chat(ctx.content))
 
 @bot.command()    
 async def resetar_conversa(ctx):
     ia.reset()
     await ctx.reply("Rebecca resetada com sucesso!")
 
+@bot.command()
+async def gpt(ctx):
+    await ctx.reply(ia.gpt_chat(ctx.content))
+
 
 all_commands = {
     "ping": ping,
     "rebecca": rebecca,
     "resetar_conversa": resetar_conversa,
+    "gpt": gpt,
 }
 
 @bot.event
@@ -43,12 +48,12 @@ async def on_message(ctx):
                 await all_commands[comm](ctx)
                 return
     text = ""
-    try:
-        text = ia.chat(ctx.content)
-    except Exception as e:
-        ia.reset()
-        text = "Não entendi o que você disse, mas vou tentar aprender!"
-        print(e)
+    # try:
+    text = ia.chat(ctx.content)
+    # except Exception as e:
+    #     ia.reset()
+    #     text = "Não entendi o que você disse, mas vou tentar aprender!"
+    #     print(e)
         
         
     print(f"{ctx.author}: {ctx.content}")
