@@ -67,11 +67,15 @@ async def on_message(ctx):
     
     # If message is not a command, chat with Rebecca
     text = ""
-    text = ia.chat(ctx.content)
+    
+    autor = str(ctx.author).split("#")[0]
+    
+    text = ia.chat(ctx.content, autor)
     # Print message and author in console   
     print(f"{ctx.author}: {ctx.content}")
     # Send message to channel, reply to author without mention
     await ctx.reply(text, mention_author=False)
+    print(f"Rebecca: {text}")
     # Run bot commands
     await bot.process_commands(ctx)
     
